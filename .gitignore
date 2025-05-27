@@ -4,6 +4,7 @@ out/
 **/src/test/**/out/
 
 # IntelliJ IDEA User-specific stuff:
+.idea/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
