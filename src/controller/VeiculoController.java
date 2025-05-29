@@ -12,9 +12,10 @@ public class VeiculoController {
        vs.adcionarVeiculo(veiculo);
         return veiculo;
     }
-    public void listaVeiculos(String id){
+    public void listaVeiculosID(String id){
         vs.mostraVeiculospornome(id);
     }
+
     public Veiculo deletarVeiculo(String placa){
         vs.removerVeiculo(placa);
         return null;
@@ -25,5 +26,9 @@ public class VeiculoController {
     }
     public boolean atualizarTodosDadosVeiculo(String placa, String novoPlaca, String novoModelo, String novoChassi, int novoAno, int novoQuilometragem) {
         return vs.atualizarTodosDadosVeiculo(placa, novoPlaca, novoModelo, novoChassi, novoAno, novoQuilometragem);
+    }
+
+    public void listarVeiculos() {
+        vs.listarVeiculos();
     }
 }
