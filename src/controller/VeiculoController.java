@@ -7,14 +7,23 @@ public class VeiculoController {
 
     VeiculoService vs = new VeiculoService();
 
-    public void cadastraVeiculo(Veiculo veiculo){
-        vs.adcionarVeiculo(veiculo);
+    public Veiculo adicionarVeiculo(String placa, String modelo, String chassi, int ano, int quilometragem) {
+        Veiculo veiculo = new Veiculo(placa, modelo, chassi, ano, quilometragem);
+       vs.adcionarVeiculo(veiculo);
+        return veiculo;
+    }
+    public void listaVeiculos(String id){
+        vs.mostraVeiculospornome(id);
+    }
+    public Veiculo deletarVeiculo(String placa){
+        vs.removerVeiculo(placa);
+        return null;
+    }
+    public Veiculo buscaVeiculo(String placa){
+        return vs.acharVeiculo(placa);
 
     }
-    public void listaVeiculos(){
-        vs.mostraVeiculos();
-    }
-    public void deletarVeiculo(String placa){
-        vs.removerVeiculo(placa);
+    public boolean atualizarTodosDadosVeiculo(String placa, String novoPlaca, String novoModelo, String novoChassi, int novoAno, int novoQuilometragem) {
+        return vs.atualizarTodosDadosVeiculo(placa, novoPlaca, novoModelo, novoChassi, novoAno, novoQuilometragem);
     }
 }
