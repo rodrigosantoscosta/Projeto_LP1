@@ -1,4 +1,5 @@
 package service;
+import model.Cliente;
 import model.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,11 @@ public class VeiculoService {
         veiculos.removeIf(veiculo -> veiculo.getPlaca() == placa);
 
     }
+
+    public List<Veiculo> listarVeiculos() {
+        return veiculos;
+    }
+
     public void mostraVeiculospornome(String cliente) {
         veiculos.forEach(element -> System.out.println("Cliente: " + cliente + " | " + element));
     }

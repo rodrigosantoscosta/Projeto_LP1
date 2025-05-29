@@ -2,17 +2,14 @@ import controller.AtendimentoController;
 import controller.ClienteController;
 import controller.FuncionarioController;
 import controller.VeiculoController;
-import enums.Servico;
-import model.Atendimento;
-import model.Cliente;
-import model.Funcionario;
-import model.Veiculo;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-import static enums.Servico.REVISAO_GERAL;
+import model.Atendimento;
+import model.Cliente;
+import model.Veiculo;
+import model.Funcionario;
+
+
 
 public class Main {
     public static void main(String[] args) {
@@ -28,10 +25,10 @@ public class Main {
 //        Cliente c = clienteController.cadastrarCliente("Pedrinha Neto","12345678990","5599999999","pedrinha@gmail.com");
 //
 //
-//        // Cadastrando funcionário
-//        Funcionario fc = new Funcionario("Jailson M","9999999","Assistente Mecanico","99999999");
-//        funcionarioController.cadastraFuncionario(fc);
-//
+        // Cadastrando funcionário
+        Funcionario fc = new Funcionario("Jailson M","9999999","Assistente Mecanico","99999999");
+        funcionarioController.cadastraFuncionario(fc);
+
 //        //Cadastrando veiculo usando VeiculoController
 
 //
@@ -277,7 +274,7 @@ public class Main {
                     System.out.println("Digite a ID do cliente: ");
                     String id_cliente = sc.nextLine();
                     System.out.println("Lista de Veiculos:");
-                    veiculoController.listaVeiculos(id_cliente);
+                    veiculoController.listaVeiculosID(id_cliente);
 
                     break;
                 case 10:
@@ -293,11 +290,49 @@ public class Main {
 
                     break;
                 case 13:
-                    // registrar atendimento
+                    System.out.println("Digite o telefone do cliente: ");
+
+                    String telefoneClienteAtendimento = sc.nextLine();
+                    Cliente clienteAtendimento = clienteController.buscarClientePorTelefone(telefoneClienteAtendimento);
+
+                    if (clienteAtendimento == null) {
+                        System.out.println("Cliente não encontrado!");
+                        System.out.println("Pressione Enter para continuar...");
+                        sc.nextLine();
+                        break;
+                    }
+
+                    veiculoController.listarVeiculos();
+                    System.out.print("Escolha a placa do veículo do atendimento: ");
+                    String placaAtendimento = sc.nextLine();
+                    Veiculo veiculoAtendimento = veiculoController.buscaVeiculo(placaAtendimento);
+
+                    System.out.println("Descreva o atendimento:");
+                    String descricao = sc.nextLine();
+
+                    atendimentoController.listaFuncionarios();
+                    System.out.print("Escolha o funcionário atendimento: ");
+                    String funcionarioAtendimentoID = sc.nextLine();
+                    Funcionario funcionarioAtendimento = funcionarioController.buscaFuncionario(funcionarioAtendimentoID);
+
+                    System.out.println("Descreva o atendimento:");
+                    String descricaoAtendimento = sc.nextLine();
+
+
+
+                    Atendimento novoAtendimento = atendimentoController.registrarAtendimento(clienteAtendimento, veiculoAtendimento,
+                            funcionarioAtendimento, servicosAtendimento, descricaoAtendimento);
+
+                    System.out.println("\nAtendimento registrado com sucesso:");
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
                     break;
+
+
                 case 14:
                     // consultar atendimento
                     break;
+
                 case 0:
                     System.out.println("✅ Encerrando o sistema...");
                     break;
