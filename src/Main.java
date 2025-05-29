@@ -14,9 +14,6 @@ import java.util.List;
 
 
 
-
-
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -178,6 +175,10 @@ public class Main {
                         System.out.println("Cliente ainda estar no sistema!");
 
                     }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
+
                     break;
                 case 5:
                     // cadastrar veículo
@@ -214,6 +215,7 @@ public class Main {
 
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
+
                     break;
                 case 7:
                     // alterar dados de veículo
@@ -263,7 +265,9 @@ public class Main {
 
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
+
                     break;
+
                 case 8:
                     // deletar dados de veículos
                     System.out.println("Digite a placa do veiculo para excluir:");
@@ -274,16 +278,24 @@ public class Main {
                         System.out.println("Veículo deletado com Sucesso:");
 
                     } else {
-                        System.out.println("Veículo ainda estar no sistema!");
+                        System.out.println("Veículo ainda esta no sistema!");
 
                     }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
+
                     break;
+
                 case 9:
                     // listar veículos do cliente
                     System.out.println("Digite a ID do cliente: ");
                     String id_cliente = sc.nextLine();
                     System.out.println("Lista de Veiculos:");
                     veiculoController.listaVeiculosID(id_cliente);
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
 
                     break;
                 case 10:
@@ -316,9 +328,7 @@ public class Main {
                     String placaAtendimento = sc.nextLine();
                     Veiculo veiculoAtendimento = veiculoController.buscaVeiculo(placaAtendimento);
 
-                    System.out.println("Descreva o atendimento:");
-                    String descricao = sc.nextLine();
-
+                    //Falta funcionario metodos
 //                    atendimentoController.listaFuncionarios();
 //                    System.out.print("Escolha o funcionário atendimento: ");
 //                    String funcionarioAtendimentoID = sc.nextLine();
@@ -329,6 +339,7 @@ public class Main {
 
                     System.out.println("\nEscolha os serviços prestados no atendimento:");
                     Servico[] servicos = Servico.values();
+
                     for (int i = 0; i < servicos.length; i++) {
                         System.out.println((i + 1) + " - " + servicos[i].name().replace('_', ' '));
                     }
@@ -355,7 +366,6 @@ public class Main {
 
 
 
-
                     Atendimento novoAtendimento = atendimentoController.registrarAtendimento(clienteAtendimento, veiculoAtendimento,
                             fc, servicosAtendimento, descricaoAtendimento);
 
@@ -367,6 +377,9 @@ public class Main {
 
                 case 14:
                     // consultar atendimento
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
                     break;
 
                 case 0:
