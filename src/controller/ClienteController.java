@@ -22,11 +22,19 @@ public class ClienteController {
         return clienteService.buscarPorId(id);
     }
 
+    public Cliente buscarClientePorTelefone(String telefone) {
+        return clienteService.buscarPorTelefone(telefone);
+    }
+
     public boolean excluirCliente(String id) {
         return clienteService.removerCliente(id);
     }
 
     public boolean atualizarTelefoneCliente(String id, String novoTelefone) {
         return clienteService.atualizarTelefone(id, novoTelefone);
+    }
+
+    public boolean atualizarTodosDadosCliente(String telefone, String novoNome, String novoCpf, String novoTelefone, String novoEmail) {
+        return clienteService.atualizarTodosDadosCliente(telefone, novoNome, novoCpf, novoTelefone, novoEmail);
     }
 }

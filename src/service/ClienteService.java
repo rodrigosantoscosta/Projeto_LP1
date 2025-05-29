@@ -23,6 +23,15 @@ public class ClienteService {
         return null;
     }
 
+    public Cliente buscarPorTelefone(String telefone) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getTelefone().equals(telefone)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
     public boolean removerCliente(String id) {
         return clientes.removeIf(c -> c.getId().equals(id));
     }
@@ -34,5 +43,27 @@ public class ClienteService {
             return true;
         }
         return false;
+    }
+
+    public Cliente buscarClientePorTelefone(String telefone) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getTelefone().equals(telefone)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public boolean atualizarTodosDadosCliente(String telefone, String novoNome, String novoCpf, String novoTelefone, String novoEmail) {
+        Cliente cliente = buscarClientePorTelefone(telefone);
+        if (cliente != null) {
+            cliente.setNome(novoNome);
+            cliente.setCpf(novoCpf);
+            cliente.setTelefone(novoTelefone);
+            cliente.setEmail(novoEmail);
+            return true;
+        }
+        return false;
+
     }
 }

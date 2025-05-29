@@ -9,6 +9,7 @@ public class VeiculoService {
     private List<Veiculo> veiculos = new ArrayList<>();
 
     public void adcionarVeiculo(Veiculo veiculo){
+
         veiculos.add(veiculo);
     }
 

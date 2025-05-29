@@ -1,5 +1,8 @@
 package model;
 import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Cliente {
     private String id;
@@ -7,6 +10,7 @@ public class Cliente {
     private String cpf;
     private String email;
     private String telefone;
+    private List<Veiculo> veiculos;
 
     public Cliente(String nome, String cpf, String telefone, String email) {
         this.id = UUID.randomUUID().toString();
@@ -14,6 +18,7 @@ public class Cliente {
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
+        this.veiculos = new ArrayList<>();
     }
     //Getters e Setters
     public String getId() {
@@ -53,6 +58,14 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
+    public void adicionarVeiculoCliente(Veiculo veiculo) {
+        veiculos.add(veiculo);
     }
 
 
