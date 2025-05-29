@@ -33,6 +33,7 @@ public class Main {
 //        funcionarioController.cadastraFuncionario(fc);
 //
 //        //Cadastrando veiculo usando VeiculoController
+
 //
 //        Veiculo v = new Veiculo("ABC555","Fiat UNO",2001,"QEF5454", 1234);
 //
@@ -61,17 +62,20 @@ public class Main {
             System.out.println("║  1. 👤 Cadastrar Cliente                            ║");
             System.out.println("║  2. 🔍 Consultar Cliente Específico                ║");
             System.out.println("║  3. ✏️  Alterar Dados de Cliente                    ║");
+            System.out.println("║  4. ❌  Deletar Dados de Cliente                    ║");
             System.out.println("║----------------------------------------------------║");
-            System.out.println("║  4. 🚘 Cadastrar Veículo                           ║");
-            System.out.println("║  5. 🔍 Consultar Veículo Específico                ║");
-            System.out.println("║  6. ✏️  Alterar Dados de Veículo                   ║");
-            System.out.println("║ 11. 📂 Listar Veículos de um Cliente               ║");
+            System.out.println("║  5. 🚘 Cadastrar Veículo                           ║");
+            System.out.println("║  6. 🔍 Consultar Veículo Específico                ║");
+            System.out.println("║  7. ✏️  Alterar Dados de Veículo                   ║");
+            System.out.println("║  8. ❌  Deletar Dados de Veículo                   ║");
+            System.out.println("║  9. 📂 Listar Veículos de um Cliente               ║");
             System.out.println("║----------------------------------------------------║");
-            System.out.println("║  7. 🧑‍🔧 Cadastrar Funcionário                      ║");
-            System.out.println("║  8. 🔍 Consultar Funcionário                       ║");
+            System.out.println("║  10. 🧑‍🔧 Cadastrar Funcionário                      ║");
+            System.out.println("║  11. 🔍 Consultar Funcionário                       ║");
+            System.out.println("║  12. ❌  Deletar Dados de Funcionário                   ║");
             System.out.println("║----------------------------------------------------║");
-            System.out.println("║  9. 🛠️  Registrar Atendimento (Ordem de Serviço)    ║");
-            System.out.println("║ 10. 🔍 Consultar Atendimento                       ║");
+            System.out.println("║  13. 🛠️  Registrar Atendimento (Ordem de Serviço)    ║");
+            System.out.println("║  14. 🔍 Consultar Atendimento                       ║");
             System.out.println("║----------------------------------------------------║");
             System.out.println("║  0. ❌ Sair                                         ║");
             System.out.println("╚════════════════════════════════════════════════════╝");
@@ -159,27 +163,139 @@ public class Main {
 
                     break;
                 case 4:
-                    // cadastrar veículo
+                    // deletar dados cliente
+                    System.out.println("Digite o Telefone do cliente para excluir:");
+                    String telefone_cliente = sc.nextLine();
+                    Cliente achouCliente = clienteController.buscarClientePorTelefone(telefone_cliente);
+                    if (achouCliente != null) {
+                        clienteController.excluirCliente(telefone_cliente);
+                        System.out.println("Cliente deletado com Sucesso:");
+
+                    } else {
+                        System.out.println("Cliente ainda estar no sistema!");
+
+                    }
                     break;
                 case 5:
-                    // consultar veículo
+                    // cadastrar veículo
+                    String placa, modelo, chassi;
+                    int ano, quilometragem;
+                    System.out.println("Digite a placa do veículo:");
+                    placa = sc.nextLine();
+                    System.out.println("Digite o modelo do veículo: ");
+                    modelo = sc.nextLine();
+                    System.out.println("Digite o chassi do veículo: ");
+                    chassi = sc.nextLine();
+                    System.out.println("Digite ano de fabricação do veículo: ");
+                    ano = sc.nextInt();
+                    System.out.println("Digite a quilomentragem do veículo:");
+                    quilometragem = sc.nextInt();
+                    Veiculo v = veiculoController.adicionarVeiculo(placa,modelo,chassi,ano,quilometragem);
+
                     break;
                 case 6:
-                    // alterar dados de veículo
-                    break;
-                case 11:
-                    // listar veículos do cliente
+                    // consultar veículo
+                    System.out.println("Digite a placa do veículo para consulta: ");
+                    String buscaVeiculo = sc.nextLine();
+                    Veiculo VeiculoEncontrado = veiculoController.buscaVeiculo(buscaVeiculo);
+
+                    if (VeiculoEncontrado != null) {
+                        System.out.println("Veículo encontrado:");
+                        System.out.println(VeiculoEncontrado);
+                    } else {
+                        System.out.println("Veículo não foi encontrado!");
+                    }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
                     break;
                 case 7:
-                    // cadastrar funcionário
+                    // alterar dados de veículo
+                    System.out.println("Digite a placa do veículo que deseja alterar: ");
+                    String placaVeiculo = sc.nextLine();
+                    Veiculo veiculoParaAlterar = veiculoController.buscaVeiculo(placaVeiculo);
+
+                    if (veiculoParaAlterar != null) {
+                        System.out.println("\nVeiculo encontrado:");
+                        System.out.println(veiculoParaAlterar);
+
+                        System.out.println("\nDigite os novos dados do Veículo:");
+
+                        System.out.println("Placa atual: " + veiculoParaAlterar.getPlaca());
+                        System.out.print("Nova placa: ");
+                        String novoPlaca = sc.nextLine();
+
+                        System.out.println("\nModelo atual: " + veiculoParaAlterar.getModelo());
+                        System.out.print("Novo Modelo: ");
+                        String novoModelo = sc.nextLine();
+
+                        System.out.println("\nChassi atual: " + veiculoParaAlterar.getChassi());
+                        System.out.print("Novo chassi: ");
+                        String novoChassi = sc.nextLine();
+
+                        System.out.println("\nAno de Fabricação atual: " + veiculoParaAlterar.getAno());
+                        System.out.print("Novo ano de fabricação: ");
+                        int novoAno = sc.nextInt();
+
+                        System.out.println("\nQuilometragem atual: " + veiculoParaAlterar.getQuilometragem());
+                        System.out.print("Nova Quilometragem: ");
+                        int novoQuilometragem = sc.nextInt();
+
+                        boolean sucesso_veiculo = veiculoController.atualizarTodosDadosVeiculo(
+                                placaVeiculo, novoPlaca, novoModelo, novoChassi, novoAno, novoQuilometragem);
+
+                        if (sucesso_veiculo) {
+                            System.out.println("\nDados do Veículo atualizado com sucesso!");
+                            System.out.println("Novos dados:");
+                            System.out.println(veiculoController.buscaVeiculo(novoPlaca));
+                        } else {
+                            System.out.println("\nFalha ao atualizar os dados do veículo.");
+                        }
+                    } else {
+                        System.out.println("\nVeículo não encontrado!");
+                    }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
                     break;
                 case 8:
-                    // consultar funcionário
+                    // deletar dados de veículos
+                    System.out.println("Digite a placa do veiculo para excluir:");
+                    String numero_placa = sc.nextLine();
+                    Veiculo achouVeiculo = veiculoController.buscaVeiculo(numero_placa);
+                    if (achouVeiculo != null) {
+                        veiculoController.deletarVeiculo(numero_placa);
+                        System.out.println("Veículo deletado com Sucesso:");
+
+                    } else {
+                        System.out.println("Veículo ainda estar no sistema!");
+
+                    }
                     break;
                 case 9:
-                    // registrar atendimento
+                    // listar veículos do cliente
+                    System.out.println("Digite a ID do cliente: ");
+                    String id_cliente = sc.nextLine();
+                    System.out.println("Lista de Veiculos:");
+                    veiculoController.listaVeiculos(id_cliente);
+
                     break;
                 case 10:
+                    // cadastrar funcionário
+
+                    break;
+                case 11:
+                    // consultar funcionário
+
+                    break;
+                case 12:
+                    // deletar dados de funcionários
+
+                    break;
+                case 13:
+                    // registrar atendimento
+                    break;
+                case 14:
                     // consultar atendimento
                     break;
                 case 0:

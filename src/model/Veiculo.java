@@ -12,7 +12,7 @@ public class Veiculo {
 
 
     // Criando o construtor
-    public Veiculo(String placa, String modelo, int ano, String chassi, int quilometragem ){
+    public Veiculo(String placa, String modelo, String chassi, int ano, int quilometragem ){
         this.placa = placa;
         this.modelo = modelo;
         this.ano = ano;
