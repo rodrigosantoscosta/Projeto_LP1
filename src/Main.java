@@ -29,8 +29,8 @@ public class Main {
 //
 //
         // Cadastrando funcionário
-        Funcionario fc = new Funcionario("Jailson M","9999999","Assistente Mecanico","99999999");
-        funcionarioController.cadastraFuncionario(fc);
+        //Funcionario fc = new Funcionario("Jailson M","9999999","Assistente Mecanico","99999999");
+        //funcionarioController.cadastraFuncionario(fc);
 
 //        //Cadastrando veiculo usando VeiculoController
 
@@ -56,13 +56,13 @@ public class Main {
 
         int opcao = -1;
         do {
-            System.out.println("\n╔════════════════════════════════════════════════════╗");
-            System.out.println("║            🚗 MECHMANAGER  - MENU                    ║");
+            System.out.println("\n╔══════════════════════════════════════════════════╗");
+            System.out.println("║            🚗 MECHMANAGER  - MENU                  ║");
             System.out.println("╠════════════════════════════════════════════════════╣");
-            System.out.println("║  1. 👤 Cadastrar Cliente                            ║");
+            System.out.println("║  1. 👤 Cadastrar Cliente                           ║");
             System.out.println("║  2. 🔍 Consultar Cliente Específico                ║");
-            System.out.println("║  3. ✏️  Alterar Dados de Cliente                    ║");
-            System.out.println("║  4. ❌  Deletar Dados de Cliente                    ║");
+            System.out.println("║  3. ✏️  Alterar Dados de Cliente                   ║");
+            System.out.println("║  4. ❌  Deletar Dados de Cliente                   ║");
             System.out.println("║----------------------------------------------------║");
             System.out.println("║  5. 🚘 Cadastrar Veículo                           ║");
             System.out.println("║  6. 🔍 Consultar Veículo Específico                ║");
@@ -70,14 +70,15 @@ public class Main {
             System.out.println("║  8. ❌  Deletar Dados de Veículo                   ║");
             System.out.println("║  9. 📂 Listar Veículos de um Cliente               ║");
             System.out.println("║----------------------------------------------------║");
-            System.out.println("║  10. 🧑‍🔧 Cadastrar Funcionário                      ║");
-            System.out.println("║  11. 🔍 Consultar Funcionário                       ║");
-            System.out.println("║  12. ❌  Deletar Dados de Funcionário                   ║");
+            System.out.println("║  10. 🧑‍🔧 Cadastrar Funcionário                    ║");
+            System.out.println("║  11. 🔍 Consultar Funcionário                      ║");
+            System.out.println("║  12. ✏️ Alterar Dados de Funcionario               ║");
+            System.out.println("║  13. ❌ Deletar Dados de Funcionário               ║");
             System.out.println("║----------------------------------------------------║");
-            System.out.println("║  13. 🛠️  Registrar Atendimento (Ordem de Serviço)    ║");
-            System.out.println("║  14. 🔍 Consultar Atendimento                       ║");
+            System.out.println("║  14. 🛠️  Registrar Atendimento (Ordem de Serviço)  ║");
+            System.out.println("║  15. 🔍 Consultar Atendimento                      ║");
             System.out.println("║----------------------------------------------------║");
-            System.out.println("║  0. ❌ Sair                                         ║");
+            System.out.println("║  0. ❌ Sair                                        ║");
             System.out.println("╚════════════════════════════════════════════════════╝");
             System.out.print("Digite uma opção: ");
 
@@ -200,7 +201,7 @@ public class Main {
                     sc.nextLine();
                     break;
 
-                    case 6:
+                case 6:
                     // consultar veículo
                     System.out.println("Digite a placa do veículo para consulta: ");
                     String buscaVeiculo = sc.nextLine();
@@ -289,28 +290,112 @@ public class Main {
 
                 case 9:
                     // listar veículos do cliente
-                    System.out.println("Digite a ID do cliente: ");
-                    String id_cliente = sc.nextLine();
-                    System.out.println("Lista de Veiculos:");
-                    veiculoController.listaVeiculosID(id_cliente);
+
+                    break;
+                case 10:
+                    String nomeFuncionario, cpfFuncionario, cargoFuncionario, telefoneFuncionario;
+
+                    System.out.println("Digite o nome do funcionario:");
+                    nomeFuncionario = sc.nextLine();
+                    System.out.println("Digite o CPF do funcionario: ");
+                    cpfFuncionario = sc.nextLine();
+                    System.out.println("Digite o cargo do funcionario: ");
+                    cargoFuncionario = sc.nextLine();
+                    System.out.println("Digite o telefone do funcionario: ");
+                    telefoneFuncionario = sc.nextLine();
+                    Funcionario F = funcionarioController.cadastraFuncionario(nomeFuncionario,cpfFuncionario,cargoFuncionario,telefoneFuncionario);
 
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
 
                     break;
-                case 10:
-                    // cadastrar funcionário
-
-                    break;
                 case 11:
                     // consultar funcionário
+                    System.out.println("Digite o Nome do funcionario para consulta: ");
+                    String buscarPorNome = sc.nextLine();
+                    Funcionario funcionarioEncontrado = funcionarioController.buscarPorNome(buscarPorNome);
 
+                    if (funcionarioEncontrado != null) {
+                        System.out.println("Funcionario encontrado:");
+                        System.out.println(funcionarioEncontrado);
+                    } else {
+                        System.out.println("Funcionario não encontrado!");
+                    }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
                     break;
+
+
+                break;
                 case 12:
                     // deletar dados de funcionários
+                    System.out.println("Digite o nome do funcionario que deseja alterar: ");
+                    String nomeDoFuncionario = sc.nextLine();
+                    Funcionario funcionarioParaAlterar = funcionarioController.buscarPorNome(nomeDoFuncionario);
+
+                    if (funcionarioParaAlterar != null) {
+                        System.out.println("\nFuncionario encontrado:");
+                        System.out.println(funcionarioParaAlterar);
+
+                        System.out.println("\nDigite os novos dados do funcionario:");
+
+                        System.out.println("Nome atual: " + funcionarioParaAlterar.getNome());
+                        System.out.print("Novo nome: ");
+                        String novoNome = sc.nextLine();
+
+                        System.out.println("\nCPF atual: " + funcionarioParaAlterar.getCpf());
+                        System.out.print("Novo CPF: ");
+                        String novoCpf = sc.nextLine();
+
+                        System.out.println("\nCargo atual: " + funcionarioParaAlterar.getCargo());
+                        System.out.print("Novo cargo: ");
+                        String novoCargo = sc.nextLine();
+
+                        System.out.println("\nTelefone atual: " + funcionarioParaAlterar.getTelefone());
+                        System.out.print("Novo telefone: ");
+                        String novoTelefone = sc.nextLine();
+
+                        boolean sucesso = funcionarioController.atualizarTodosDadosFuncionario(
+                                novoTelefone, novoNome, novoCpf, novoTelefone);
+
+                        if (sucesso) {
+                            System.out.println("\nFuncionario atualizado com sucesso!");
+                            System.out.println("Novos dados:");
+                            System.out.println(funcionarioController.buscarPorNome(novoNome));
+                        } else {
+                            System.out.println("\nFalha ao atualizar funcionario.");
+                        }
+                    } else {
+                        System.out.println("\nFuncionario não encontrado!");
+                    }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
 
                     break;
                 case 13:
+                    // deletar dados dos funcionarios
+                    System.out.println("Digite o nome do cliente para excluir:");
+                    String nome_funcionario = sc.nextLine();
+                    Funcionario achouFuncionario = funcionarioController.buscarPorNome(nome_funcionario);
+                    if (achouFuncionario != null) {
+                        funcionarioController.deletarFuncionario(nome_funcionario);
+                        System.out.println("Cliente deletado com Sucesso:");
+
+                    } else {
+                        System.out.println("Cliente ainda estar no sistema!");
+
+                    }
+
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
+
+                    break;
+
+
+                case 14:
+                    // consultar atendimento
                     System.out.println("Digite o telefone do cliente: ");
 
                     String telefoneClienteAtendimento = sc.nextLine();
@@ -373,14 +458,13 @@ public class Main {
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
                     break;
-
-
-                case 14:
+                case 15:
                     // consultar atendimento
 
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
                     break;
+
 
                 case 0:
                     System.out.println("✅ Encerrando o sistema...");
