@@ -1,13 +1,19 @@
-import controller.AtendimentoController;
-import controller.ClienteController;
-import controller.FuncionarioController;
-import controller.VeiculoController;
-import java.util.Scanner;
-
+import enums.Servico;
 import model.Atendimento;
 import model.Cliente;
 import model.Veiculo;
 import model.Funcionario;
+import controller.AtendimentoController;
+import controller.ClienteController;
+import controller.FuncionarioController;
+import controller.VeiculoController;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.List;
+
+
+
 
 
 
@@ -189,8 +195,11 @@ public class Main {
                     quilometragem = sc.nextInt();
                     Veiculo v = veiculoController.adicionarVeiculo(placa,modelo,chassi,ano,quilometragem);
 
+                    System.out.println("Pressione Enter para continuar...");
+                    sc.nextLine();
                     break;
-                case 6:
+
+                    case 6:
                     // consultar veículo
                     System.out.println("Digite a placa do veículo para consulta: ");
                     String buscaVeiculo = sc.nextLine();
@@ -310,18 +319,45 @@ public class Main {
                     System.out.println("Descreva o atendimento:");
                     String descricao = sc.nextLine();
 
-                    atendimentoController.listaFuncionarios();
-                    System.out.print("Escolha o funcionário atendimento: ");
-                    String funcionarioAtendimentoID = sc.nextLine();
-                    Funcionario funcionarioAtendimento = funcionarioController.buscaFuncionario(funcionarioAtendimentoID);
+//                    atendimentoController.listaFuncionarios();
+//                    System.out.print("Escolha o funcionário atendimento: ");
+//                    String funcionarioAtendimentoID = sc.nextLine();
+//                    Funcionario funcionarioAtendimento = funcionarioController.buscaFuncionario(funcionarioAtendimentoID);
 
                     System.out.println("Descreva o atendimento:");
                     String descricaoAtendimento = sc.nextLine();
 
+                    System.out.println("\nEscolha os serviços prestados no atendimento:");
+                    Servico[] servicos = Servico.values();
+                    for (int i = 0; i < servicos.length; i++) {
+                        System.out.println((i + 1) + " - " + servicos[i].name().replace('_', ' '));
+                    }
+
+                    List<Servico> servicosAtendimento = new ArrayList<>();
+                    while (true) {
+                        System.out.print("Digite o número do serviço (ou 0 para finalizar): ");
+                        int opcaoServico = Integer.parseInt(sc.nextLine());
+
+                        if (opcaoServico == 0) break;
+
+                        if (opcaoServico < 1 || opcaoServico > servicos.length) {
+                            System.out.println("Opção inválida. Tente novamente.");
+                        } else {
+                            Servico servicoSelecionado = servicos[opcaoServico - 1];
+                            if (servicosAtendimento.contains(servicoSelecionado)) {
+                                System.out.println("Esse serviço já foi adicionado.");
+                            } else {
+                                servicosAtendimento.add(servicoSelecionado);
+                                System.out.println("Serviço adicionado: " + servicoSelecionado.name().replace('_', ' '));
+                            }
+                        }
+                    }
+
+
 
 
                     Atendimento novoAtendimento = atendimentoController.registrarAtendimento(clienteAtendimento, veiculoAtendimento,
-                            funcionarioAtendimento, servicosAtendimento, descricaoAtendimento);
+                            fc, servicosAtendimento, descricaoAtendimento);
 
                     System.out.println("\nAtendimento registrado com sucesso:");
                     System.out.println("Pressione Enter para continuar...");
