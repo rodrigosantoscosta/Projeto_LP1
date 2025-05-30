@@ -9,6 +9,7 @@ public class FuncionarioService {
 
     private List<Funcionario> funcionarios = new ArrayList<>();
 
+
     public void adcionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
     }
@@ -21,6 +22,15 @@ public class FuncionarioService {
     public Funcionario buscarPorNome(String nome) {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getNome().equals(nome)) {
+                return funcionario;
+            }
+        }
+        return null;
+    }
+
+    public Funcionario buscarPorId(String id) {
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getNome().equals(id)) {
                 return funcionario;
             }
         }
@@ -41,12 +51,9 @@ public class FuncionarioService {
 
     }
 
-    public List<Funcionario> listarFuncionario() {
-        return funcionarios;
-    }
 
     public void mostrarFuncionario(){
-        funcionarios.forEach(element -> System.out.println("Elemento: " + element));
+        funcionarios.forEach(element -> System.out.println("Funcionário: " + element));
     }
 
 }

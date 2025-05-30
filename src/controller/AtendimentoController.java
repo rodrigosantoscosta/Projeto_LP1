@@ -6,7 +6,6 @@ import model.Funcionario;
 import model.Veiculo;
 import service.AtendimentoService;
 
-import enums.Defeitos;
 import enums.Servico;
 
 import java.time.LocalDateTime;

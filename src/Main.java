@@ -25,17 +25,17 @@ public class Main {
 
 
 //        // Cadastrando cliente usando o ClienteController
-//        Cliente c = clienteController.cadastrarCliente("Pedrinha Neto","12345678990","5599999999","pedrinha@gmail.com");
+        clienteController.cadastrarCliente("Pedrinha Neto","12345678990","5599999999","pedrinha@gmail.com");
 //
 //
         // Cadastrando funcionário
-        //Funcionario fc = new Funcionario("Jailson M","9999999","Assistente Mecanico","99999999");
-        //funcionarioController.cadastraFuncionario(fc);
+        funcionarioController.cadastraFuncionario("Jailson ","9999999","Assistente Mecanico","99999999");
 
 //        //Cadastrando veiculo usando VeiculoController
-
+        veiculoController.adicionarVeiculo("ABC555","Fiat UNO","QWER1",1995, 500000);
 //
-//        Veiculo v = new Veiculo("ABC555","Fiat UNO",2001,"QEF5454", 1234);
+        veiculoController.listarVeiculos();
+        funcionarioController.listarFuncionarios();
 //
 //        //Realizando um atendimento
 //        String descricao = "Cliente solicitou revisão geral e alinhamento, não vai ser necessário ser feito nenhum reparo";
@@ -327,7 +327,7 @@ public class Main {
                     break;
 
 
-                break;
+
                 case 12:
                     // deletar dados de funcionários
                     System.out.println("Digite o nome do funcionario que deseja alterar: ");
@@ -395,7 +395,7 @@ public class Main {
 
 
                 case 14:
-                    // consultar atendimento
+                    //registrar atendimento
                     System.out.println("Digite o telefone do cliente: ");
 
                     String telefoneClienteAtendimento = sc.nextLine();
@@ -410,16 +410,17 @@ public class Main {
 
                     veiculoController.listarVeiculos();
                     System.out.print("Escolha a placa do veículo do atendimento: ");
+
                     String placaAtendimento = sc.nextLine();
                     Veiculo veiculoAtendimento = veiculoController.buscaVeiculo(placaAtendimento);
 
-                    //Falta funcionario metodos
-//                    atendimentoController.listaFuncionarios();
-//                    System.out.print("Escolha o funcionário atendimento: ");
-//                    String funcionarioAtendimentoID = sc.nextLine();
-//                    Funcionario funcionarioAtendimento = funcionarioController.buscaFuncionario(funcionarioAtendimentoID);
+                    funcionarioController.listarFuncionarios();
+                    System.out.print("Escolha o nome do funcionário deste atendimento: ");
 
-                    System.out.println("Descreva o atendimento:");
+                    String funcionarioAtendimentoID = sc.nextLine();
+                    Funcionario funcionarioAtendimento = funcionarioController.buscarFuncionarioPorId(funcionarioAtendimentoID);
+
+                    System.out.println("Descreva o atendimento, caso houver necessidade de peças de reposição etc:");
                     String descricaoAtendimento = sc.nextLine();
 
                     System.out.println("\nEscolha os serviços prestados no atendimento:");
@@ -450,14 +451,14 @@ public class Main {
                     }
 
 
-
                     Atendimento novoAtendimento = atendimentoController.registrarAtendimento(clienteAtendimento, veiculoAtendimento,
-                            fc, servicosAtendimento, descricaoAtendimento);
+                            funcionarioAtendimento, servicosAtendimento, descricaoAtendimento);
 
                     System.out.println("\nAtendimento registrado com sucesso:");
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
                     break;
+
                 case 15:
                     // consultar atendimento
 

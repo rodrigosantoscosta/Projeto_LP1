@@ -19,12 +19,12 @@ public class VeiculoService {
 
     }
 
-    public List<Veiculo> listarVeiculos() {
-        return veiculos;
+    public void listarTodosVeiculos(){
+        veiculos.forEach(element -> System.out.println("Veiculo: " +  " | " + element));
     }
 
-    public void mostraVeiculospornome(String cliente) {
-        veiculos.forEach(element -> System.out.println("Cliente: " + cliente + " | " + element));
+    public void mostraVeiculospornome(String veiculo) {
+        veiculos.forEach(element -> System.out.println("Veiculo: " + veiculo + " | " + element));
     }
 
     public Veiculo acharVeiculo(String placa) {

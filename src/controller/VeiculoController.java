@@ -29,6 +29,6 @@ public class VeiculoController {
     }
 
     public void listarVeiculos() {
-        vs.listarVeiculos();
+        vs.listarTodosVeiculos();
     }
 }
