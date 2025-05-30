@@ -22,7 +22,9 @@ public class AtendimentoController {
         return atendimento;
     }
 
-
+    public Atendimento buscarAtendimentoPorId(String placa) {
+        return atendimentoService.buscarPorId(placa);
+    }
 
     public void listarAtendimentos() {
         for (Atendimento a : atendimentoService.listarAtendimentos()) {

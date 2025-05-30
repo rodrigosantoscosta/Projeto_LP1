@@ -16,9 +16,9 @@ public class AtendimentoService {
         return atendimentos;
     }
 
-    public Atendimento buscarPorId(String id) {
+    public Atendimento buscarPorId(String placa) {
         for (Atendimento a : atendimentos) {
-            if (a.getId().equals(id)) return a;
+            if (a.getId().equals(placa)) return a;
         }
         return null;
     }

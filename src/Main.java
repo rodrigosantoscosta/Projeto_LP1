@@ -24,6 +24,7 @@ public class Main {
         AtendimentoController atendimentoController = new AtendimentoController();
 
 
+
 //        // Cadastrando cliente usando o ClienteController
         clienteController.cadastrarCliente("Pedrinha Neto","12345678990","5599999999","pedrinha@gmail.com");
 //
@@ -460,7 +461,18 @@ public class Main {
                     break;
 
                 case 15:
-                    // consultar atendimento
+                    System.out.println("Digite a placa do veículo para consulta o atendimento: ");
+                    String buscaAtendimento = sc.nextLine();
+                    Atendimento AtendimentoEncontrado = atendimentoController.buscarAtendimentoPorId(buscaAtendimento);
+
+                    if (buscaAtendimento != null) {
+                        System.out.println("Antendimento encontrado:");
+                        System.out.println(buscaAtendimento);
+                        atendimentoController.listarAtendimentos();
+                    } else {
+                        System.out.println("Atendimento não foi encontrado!");
+
+                    }
 
                     System.out.println("Pressione Enter para continuar...");
                     sc.nextLine();
